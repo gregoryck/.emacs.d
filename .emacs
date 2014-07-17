@@ -41,6 +41,8 @@
 (define-key evil-normal-state-map (kbd "<right>") 'previous-buffer)
 (define-key evil-normal-state-map (kbd "C-/") 'comment-region)
 (define-key evil-normal-state-map (kbd "C-?") 'uncomment-region)
+(define-key evil-normal-state-map (kbd "{") 'shrink-window-horizontally)
+(define-key evil-normal-state-map (kbd "}") 'enlarge-window-horizontally)
 
 (set-face-attribute 'default nil :height 150)
 
