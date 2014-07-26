@@ -43,6 +43,7 @@
 (define-key evil-normal-state-map (kbd "C-?") 'uncomment-region)
 (define-key evil-normal-state-map (kbd "{") 'shrink-window-horizontally)
 (define-key evil-normal-state-map (kbd "}") 'enlarge-window-horizontally)
+(define-key evil-normal-state-map (kbd "U") 'undo-tree-redo)
 
 (set-face-attribute 'default nil :height 150)
 
@@ -76,3 +77,5 @@
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
+(global-undo-tree-mode)
