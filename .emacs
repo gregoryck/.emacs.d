@@ -44,6 +44,8 @@
 (define-key evil-normal-state-map (kbd "{") 'shrink-window-horizontally)
 (define-key evil-normal-state-map (kbd "}") 'enlarge-window-horizontally)
 (define-key evil-normal-state-map (kbd "U") 'undo-tree-redo)
+(define-key evil-normal-state-map (kbd "tt") 'find-tag-other-window)
+; and c-x u to enter visual redo tree
 
 (set-face-attribute 'default nil :height 150)
 
@@ -79,3 +81,10 @@
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
 (global-undo-tree-mode)
+
+
+;; (mc/execute-command-for-all-fake-cursors 'backward-char)
+;; (mc/execute-command-for-all-fake-cursors 'evil-delete)
+;; (mc/execute-command-for-all-fake-cursors 'evil-forward-char)
+;; (mc/execute-command-for-all-fake-cursors 'evil-backward-char)
+;; (mc/execute-command-for-all-fake-cursors ')
