@@ -1,6 +1,6 @@
 (setq-default indent-tabs-mode nil)
 
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'key-chord)
 (key-chord-mode 1)
 
@@ -103,3 +103,6 @@
 (autoload 'word-count-mode "word-count"
           "Minor mode to count words." t nil)
 (global-set-key "\M-+" 'word-count-mode)
+
+
+;; (global-set-key (kbd "<backspace>") 'ignore)
