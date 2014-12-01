@@ -22,9 +22,9 @@
 (autoload 'ghc-debug "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
-(setq ghc-module-command "/Users/gkettler/Library/Haskell/bin/ghc-mod")
-(setq ghc-check-command "/Users/gkettler/Library/Haskell/bin/ghc-mod check")
-(setq ghc-interactive-command "/Users/gkettler/Library/Haskell/bin/ghc-modi")
+(setq ghc-module-command "/Users/gkettler/haskell/bin/ghc-mod-sandbox")
+(setq ghc-check-command "/Users/gkettler/haskell/bin/ghc-mod-sandbox check")
+(setq ghc-interactive-command "/Users/gkettler/haskell/bin/ghc-modi")
 
 (setenv "PATH" (concat (getenv "PATH") ":/Users/gkettler/bin"))
 (setq exec-path (append exec-path '("/Users/gkettler/bin")))
