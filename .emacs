@@ -11,6 +11,7 @@
 (key-chord-define evil-visual-state-map ";;" 'evil-change-to-previous-state)
 (key-chord-define evil-insert-state-map ";;" 'evil-normal-state)
 (key-chord-define evil-replace-state-map ";;" 'evil-normal-state)
+(key-chord-define evil-normal-state-map "zx" 'execute-extended-command)
 
 
 (require 'package)
@@ -22,12 +23,12 @@
 (autoload 'ghc-debug "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
-(setq ghc-module-command "/Users/gkettler/haskell/bin/ghc-mod-sandbox")
-(setq ghc-check-command "/Users/gkettler/haskell/bin/ghc-mod-sandbox check")
-(setq ghc-interactive-command "/Users/gkettler/haskell/bin/ghc-modi")
+(setq ghc-module-command "ghc-mod")
+(setq ghc-check-command "ghc-mod check")
+(setq ghc-interactive-command "ghc-modi")
 
-(setenv "PATH" (concat (getenv "PATH") ":/Users/gkettler/bin"))
-(setq exec-path (append exec-path '("/Users/gkettler/bin")))
+(setenv "PATH" (concat (getenv "PATH") ":/home/vagrant/bin"))
+(setq exec-path (append exec-path '("/home/vagrant/bin")))
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
@@ -45,6 +46,7 @@
 (define-key evil-normal-state-map (kbd "}") 'enlarge-window-horizontally)
 (define-key evil-normal-state-map (kbd "U") 'undo-tree-redo)
 (define-key evil-normal-state-map (kbd "tt") 'find-tag-other-window)
+(define-key evil-normal-state-map (kbd "") 'find-tag-other-window)
 ; and c-x u to enter visual redo tree
 
 (set-face-attribute 'default nil :height 150)
@@ -106,3 +108,12 @@
 
 
 ;; (global-set-key (kbd "<backspace>") 'ignore)
+
+; esca quites dammit
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
