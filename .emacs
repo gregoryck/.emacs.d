@@ -119,3 +119,5 @@
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
 (setq tramp-default-method "ssh")
+(add-to-list 'load-path "~/.emacs.d/helm")
+(require 'helm-config)
