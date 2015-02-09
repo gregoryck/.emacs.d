@@ -1,12 +1,13 @@
 (setq-default indent-tabs-mode nil)
+(local-set-key (kbd "TAB") 'dabbrev-expand)
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'key-chord)
 (key-chord-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/evil") ; only without ELPA/el-get
-    (require 'evil)
-    (evil-mode 1)
+(require 'evil)
+(evil-mode 1)
 (key-chord-define evil-normal-state-map ";;" 'evil-force-normal-state)
 (key-chord-define evil-visual-state-map ";;" 'evil-change-to-previous-state)
 (key-chord-define evil-insert-state-map ";;" 'evil-normal-state)
@@ -47,6 +48,7 @@
 (define-key evil-normal-state-map (kbd "U") 'undo-tree-redo)
 (define-key evil-normal-state-map (kbd "tt") 'find-tag-other-window)
 (define-key evil-normal-state-map (kbd "") 'find-tag-other-window)
+(define-key evil-insert-state-map (kbd "TAB") 'dabbrev-expand)
 ; and c-x u to enter visual redo tree
 
 (set-face-attribute 'default nil :height 150)
