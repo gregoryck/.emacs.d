@@ -32,10 +32,14 @@
 (setq ghc-check-command "ghc-mod check")
 (setq ghc-interactive-command "ghc-modi")
 
-(setenv "PATH" (concat (getenv "PATH") ":/Users/gkettler/Library/Haskell/bin"))
-(setenv "PATH" (concat (getenv "PATH") ":/Users/gkettler/bin"))
-(setq exec-path (append exec-path '("/Users/gkettler/Library/Haskell/bin")))
-(setq exec-path (append exec-path '("/Users/gkettler/bin")))
+(setenv "PATH" (concat (getenv "PATH") 
+                       ":"
+                       (expand-file-name "~")
+                       "/bin"))
+
+(setq exec-path (append exec-path '((concat 
+                                     (expand-file-name "~")
+                                     "/bin"))))
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
@@ -71,7 +75,9 @@
 
 ;; Please set your themes directory to 'custom-theme-load-path
 (add-to-list 'custom-theme-load-path
-             (file-name-as-directory "/Users/gkettler/.emacs.d/replace-colortheme"))
+             (file-name-as-directory (concat 
+                                      (expand-file-name "~")
+                                      "/.emacs.d/replace-colortheme")))
 ;(load-theme 'taylor-theme t t)
 ;(enable-theme 'taylor-theme)
 ;(color-theme-taylor)
