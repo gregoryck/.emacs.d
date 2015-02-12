@@ -1,12 +1,17 @@
 (setq-default indent-tabs-mode nil)
+(local-set-key (kbd "TAB") 'dabbrev-expand)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(tool-bar-mode -1)
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'key-chord)
 (key-chord-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/evil") ; only without ELPA/el-get
-    (require 'evil)
-    (evil-mode 1)
+(add-to-list 'load-path "~/.emacs.d/ghc-mod/elisp") ; only without ELPA/el-get
+(require 'evil)
+(evil-mode 1)
 (key-chord-define evil-normal-state-map ";;" 'evil-force-normal-state)
 (key-chord-define evil-visual-state-map ";;" 'evil-change-to-previous-state)
 (key-chord-define evil-insert-state-map ";;" 'evil-normal-state)
@@ -27,15 +32,16 @@
 (setq ghc-check-command "ghc-mod check")
 (setq ghc-interactive-command "ghc-modi")
 
-(setenv "PATH" (concat (getenv "PATH") ":/home/vagrant/bin"))
-(setq exec-path (append exec-path '("/home/vagrant/bin")))
+(setenv "PATH" (concat (getenv "PATH") ":/Users/gkettler/Library/Haskell/bin"))
+(setenv "PATH" (concat (getenv "PATH") ":/Users/gkettler/bin"))
+(setq exec-path (append exec-path '("/Users/gkettler/Library/Haskell/bin")))
+(setq exec-path (append exec-path '("/Users/gkettler/bin")))
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
 
 (define-key evil-normal-state-map (kbd "q") nil)
-(global-unset-key (kbd "<up>"))
 (define-key evil-normal-state-map (kbd "<up>") 'scroll-down)
 (define-key evil-normal-state-map (kbd "<down>") 'scroll-up)
 (define-key evil-normal-state-map (kbd "<left>") 'next-buffer)
@@ -47,6 +53,7 @@
 (define-key evil-normal-state-map (kbd "U") 'undo-tree-redo)
 (define-key evil-normal-state-map (kbd "tt") 'find-tag-other-window)
 (define-key evil-normal-state-map (kbd "") 'find-tag-other-window)
+(define-key evil-insert-state-map (kbd "TAB") 'dabbrev-expand)
 ; and c-x u to enter visual redo tree
 
 (set-face-attribute 'default nil :height 150)
@@ -71,7 +78,7 @@
 
 (load-theme 'spacegray t)
 
- (desktop-save-mode 1)
+(desktop-save-mode 1)
 
 (key-chord-define evil-normal-state-map "??" 'ghc-display-errors)
 
@@ -125,3 +132,7 @@
 (xterm-mouse-mode t)
 (defun track-mouse (e)) 
 (setq mouse-sel-mode t)
+
+(setq tramp-default-method "ssh")
+(add-to-list 'load-path "~/.emacs.d/helm")
+(require 'helm-config)
