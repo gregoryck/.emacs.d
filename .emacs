@@ -40,8 +40,8 @@
 (define-key evil-normal-state-map (kbd "<down>") 'scroll-up)
 (define-key evil-normal-state-map (kbd "<left>") 'next-buffer)
 (define-key evil-normal-state-map (kbd "<right>") 'previous-buffer)
-(define-key evil-normal-state-map (kbd "C-/") 'comment-region)
-(define-key evil-normal-state-map (kbd "C-?") 'uncomment-region)
+(define-key evil-normal-state-map (kbd "zc") 'comment-region)
+(define-key evil-normal-state-map (kbd "zv") 'uncomment-region)
 (define-key evil-normal-state-map (kbd "{") 'shrink-window-horizontally)
 (define-key evil-normal-state-map (kbd "}") 'enlarge-window-horizontally)
 (define-key evil-normal-state-map (kbd "U") 'undo-tree-redo)
@@ -100,7 +100,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "LightPink3")))))
+ '(font-lock-comment-face ((t (:foreground "LightPink4")))))
 
 (autoload 'word-count-mode "word-count"
           "Minor mode to count words." t nil)
@@ -117,3 +117,11 @@
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+
+
+; from
+; http://stackoverflow.com/questions/5710334/how-can-i-get-mouse-selection-to-work-in-emacs-and-iterm2-on-mac
+(require 'mouse)
+(xterm-mouse-mode t)
+(defun track-mouse (e)) 
+(setq mouse-sel-mode t)
