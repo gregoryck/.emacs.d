@@ -4,6 +4,18 @@
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (tool-bar-mode -1)
 
+(setenv "PATH" (concat (getenv "PATH") 
+                       ":"
+                       (expand-file-name "~")
+                       "/bin"))
+
+(setq exec-path 
+      (append exec-path (list (concat 
+                               (expand-file-name "~")
+                               "/bin"))))
+
+
+
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'key-chord)
 (key-chord-mode 1)
@@ -31,15 +43,6 @@
 (setq ghc-module-command "ghc-mod")
 (setq ghc-check-command "ghc-mod check")
 (setq ghc-interactive-command "ghc-modi")
-
-(setenv "PATH" (concat (getenv "PATH") 
-                       ":"
-                       (expand-file-name "~")
-                       "/bin"))
-
-(setq exec-path (append exec-path '((concat 
-                                     (expand-file-name "~")
-                                     "/bin"))))
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
