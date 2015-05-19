@@ -1,3 +1,4 @@
+(define-key global-map (kbd "RET") 'newline-and-indent)
 (setq-default indent-tabs-mode nil)
 (local-set-key (kbd "TAB") 'dabbrev-expand)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -68,8 +69,8 @@
 
 (setq ring-bell-function 'ignore)
 
-(add-to-list 'default-frame-alist '(font .  "DejaVu Sans Mono-14" ))
-(set-face-attribute 'default t :font  "DejaVu Sans Mono-14")
+(add-to-list 'default-frame-alist '(font .  "DejaVu Sans Mono-12" ))
+(set-face-attribute 'default t :font  "DejaVu Sans Mono-12")
 
 
 (require 'color-theme)
@@ -116,7 +117,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "LightPink4")))))
+ '(font-lock-comment-face ((t (:foreground "LightPink2")))))
+
+(custom-set-faces '(font-lock-keyword-face ((t (:foreground "chocolate1")))))
 
 (autoload 'word-count-mode "word-count"
           "Minor mode to count words." t nil)
@@ -143,6 +146,7 @@
 (setq mouse-sel-mode t)
 
 (setq tramp-default-method "ssh")
+(add-to-list 'load-path "~/.emacs.d/async")
 (add-to-list 'load-path "~/.emacs.d/helm")
 (require 'helm-config)
 
@@ -185,3 +189,15 @@
 
 ;; No more typing the whole yes or no. Just y or n will do.
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(defun show-file-name ()
+  "Show the full path file name in the minibuffer."
+  (interactive)
+  (message (buffer-file-name)))
+
+(global-set-key [C-f1] 'show-file-name)
+
+
+(add-to-list 'load-path "/home/gkettler/.emacs.d/icicles")
+(require 'icicles)
+(icy-mode 1)
