@@ -1,8 +1,9 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (setq-default indent-tabs-mode nil)
 (local-set-key (kbd "TAB") 'dabbrev-expand)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
+;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
+;; (global-set-key (kbd "C-x b") 'helm-buffers-list)
+
 (tool-bar-mode -1)
 
 (setenv "PATH" (concat (getenv "PATH") 
@@ -59,7 +60,9 @@
 (define-key evil-normal-state-map (kbd "{") 'shrink-window-horizontally)
 (define-key evil-normal-state-map (kbd "}") 'enlarge-window-horizontally)
 (define-key evil-normal-state-map (kbd "U") 'undo-tree-redo)
-(define-key evil-normal-state-map (kbd "tt") 'find-tag-other-window)
+(define-key evil-normal-state-map (kbd "TT") 'find-tag-other-window) ;legacy
+(define-key evil-normal-state-map (kbd "tt") 'icicle-find-tag)
+(define-key evil-normal-state-map (kbd "ff") 'icicle-find-file-in-tags-table)
 (define-key evil-normal-state-map (kbd "") 'find-tag-other-window)
 (define-key evil-insert-state-map (kbd "TAB") 'dabbrev-expand)
 ; and c-x u to enter visual redo tree
@@ -69,8 +72,8 @@
 
 (setq ring-bell-function 'ignore)
 
-(add-to-list 'default-frame-alist '(font .  "DejaVu Sans Mono-12" ))
-(set-face-attribute 'default t :font  "DejaVu Sans Mono-12")
+(add-to-list 'default-frame-alist '(font .  "DejaVu Sans Mono-11" ))
+(set-face-attribute 'default t :font  "DejaVu Sans Mono-11")
 
 
 (require 'color-theme)
@@ -146,9 +149,9 @@
 (setq mouse-sel-mode t)
 
 (setq tramp-default-method "ssh")
-(add-to-list 'load-path "~/.emacs.d/async")
-(add-to-list 'load-path "~/.emacs.d/helm")
-(require 'helm-config)
+;; (add-to-list 'load-path "~/.emacs.d/async")
+;; (add-to-list 'load-path "~/.emacs.d/helm")
+;; (require 'helm-config)
 
 (add-hook 'python-mode-hook
           (function (lambda ()
@@ -201,3 +204,15 @@
 (add-to-list 'load-path "/home/gkettler/.emacs.d/icicles")
 (require 'icicles)
 (icy-mode 1)
+
+(column-number-mode 1)
+
+
+
+(add-to-list 'load-path "/home/gkettler/.emacs.d/flycheck")
+(require 'flycheck)
+(add-to-list 'load-path "/home/gkettler/.emacs.d/flycheck-pyflakes")
+(require 'flycheck-pyflakes)
+
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
