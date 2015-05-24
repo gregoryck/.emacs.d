@@ -216,3 +216,10 @@
 
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+(setq icicle-S-TAB-completion-methods-alist
+      '(("scatter" . icicle-scatter-match)))
+      
+
+(provide '.emacs)
+;;; .emacs ends here
