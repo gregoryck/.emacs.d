@@ -63,7 +63,8 @@
 (define-key evil-normal-state-map (kbd "TT") 'find-tag-other-window) ;legacy
 (define-key evil-normal-state-map (kbd "tt") 'icicle-find-tag)
 (define-key evil-normal-state-map (kbd "ff") 'icicle-find-file-in-tags-table)
-(define-key evil-normal-state-map (kbd "") 'find-tag-other-window)
+(define-key evil-normal-state-map (kbd "en") 'flycheck-next-error)
+(define-key evil-normal-state-map (kbd "ep") 'flycheck-previous-error)
 (define-key evil-insert-state-map (kbd "TAB") 'dabbrev-expand)
 ; and c-x u to enter visual redo tree
 
