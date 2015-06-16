@@ -4,6 +4,8 @@
 ;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
 ;; (global-set-key (kbd "C-x b") 'helm-buffers-list)
 
+(modify-syntax-entry ?_ "w")
+
 (tool-bar-mode -1)
 
 (setenv "PATH" (concat (getenv "PATH") 
