@@ -123,9 +123,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "LightPink2")))))
+'(font-lock-comment-face ((t (:foreground "LightPink1")))))
 
 (custom-set-faces '(font-lock-keyword-face ((t (:foreground "chocolate1")))))
+(set-background-color "#121253")
 
 (autoload 'word-count-mode "word-count"
           "Minor mode to count words." t nil)
