@@ -2,6 +2,7 @@
 (setq-default indent-tabs-mode nil)
 (local-set-key (kbd "TAB") 'dabbrev-expand)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
+(global-set-key (kbd "C-x t") 'visit-tags-table)
 
 (modify-syntax-entry ?_ "w")
 
