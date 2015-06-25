@@ -1,8 +1,7 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (setq-default indent-tabs-mode nil)
 (local-set-key (kbd "TAB") 'dabbrev-expand)
-;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
-;; (global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
 
 (modify-syntax-entry ?_ "w")
 
@@ -18,11 +17,18 @@
                                (expand-file-name "~")
                                "/bin"))))
 
+(makunbound 'tags-file-name)
+;(setq tags-table-list '("~/TexturaWD/textura"))
+(visit-tags-table "/home/gkettler/TexturaWD/textura")
 
+(defadvice visit-tags-table (around stfu compile activate)
+  (flet ((y-or-no-p (&rest args) nil))
+    ad-do-it))
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'key-chord)
 (key-chord-mode 1)
+
 
 (add-to-list 'load-path "~/.emacs.d/evil") ; only without ELPA/el-get
 (add-to-list 'load-path "~/.emacs.d/ghc-mod/elisp") ; only without ELPA/el-get
@@ -33,6 +39,7 @@
 (key-chord-define evil-insert-state-map ";;" 'evil-normal-state)
 (key-chord-define evil-replace-state-map ";;" 'evil-normal-state)
 (key-chord-define evil-normal-state-map "zx" 'execute-extended-command)
+(key-chord-define evil-normal-state-map "ko" 'kill-other-buffers)
 
 
 (require 'package)
