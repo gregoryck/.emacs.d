@@ -3,7 +3,6 @@
 (local-set-key (kbd "TAB") 'dabbrev-expand)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 (global-set-key (kbd "C-x C-k") 'kill-this-buffer)
-(global-set-key (kbd "C-x t") 'visit-tags-table)
 
 (modify-syntax-entry ?_ "w")
 
@@ -20,8 +19,27 @@
                                "/bin"))))
 
 (makunbound 'tags-file-name)
-;(setq tags-table-list '("~/TexturaWD/textura"))
 (visit-tags-table "/home/gkettler/TexturaWD/textura")
+
+(icicle-define-command select-tags-table         ; Command name
+      "Display menu of TAGS files and choose one."       ; Doc string
+      visit-tags-table                           ; Function to perform the action
+      "Choose TAGS file. " ; completing-read args
+      tags-menu-items nil t)
+
+(defvar tags-menu-items nil "TAGS I have known.")
+
+(setq tags-menu-items
+  '("/home/gkettler/TexturaWD/textura"
+    "/home/gkettler/checkouts/cpmcelery"
+    "/home/gkettler/checkouts/highnoon"
+    "/home/gkettler/checkouts/feebill/trunk"
+    "~/checkouts/cpm-14429/b"
+    )
+  )
+
+(global-set-key (kbd "C-x t") 'select-tags-table)
+(global-set-key (kbd "C-x C-t") 'select-tags-table)
 
 (defadvice visit-tags-table (around stfu compile activate)
   (flet ((y-or-no-p (&rest args) nil))
