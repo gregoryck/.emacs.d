@@ -4,6 +4,15 @@
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 (global-set-key (kbd "C-x C-k") 'kill-this-buffer)
 
+
+; thanks Xah. http://xahlee.blogspot.com/2010/09/emacs-select-current-line-with-single.html
+(defun select-current-line ()
+  "Select the current line"
+  (interactive)
+  (end-of-line) ; move to end of line
+  (set-mark (line-beginning-position)))
+
+
 (modify-syntax-entry ?_ "w")
 
 (tool-bar-mode -1)
@@ -35,8 +44,10 @@
     "/home/gkettler/checkouts/highnoon"
     "/home/gkettler/checkouts/feebill/trunk"
     "~/checkouts/cpm-14429/b"
+    "~/checkouts/cpm-6281/m"
     )
   )
+
 
 (global-set-key (kbd "C-x t") 'select-tags-table)
 (global-set-key (kbd "C-x C-t") 'select-tags-table)
@@ -60,6 +71,7 @@
 (key-chord-define evil-replace-state-map ";;" 'evil-normal-state)
 (key-chord-define evil-normal-state-map "zx" 'execute-extended-command)
 (key-chord-define evil-normal-state-map "ko" 'kill-other-buffers)
+(key-chord-define evil-normal-state-map "z " 'select-current-line)
 
 
 (require 'package)
