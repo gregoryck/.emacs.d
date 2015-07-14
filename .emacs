@@ -40,20 +40,26 @@
 
 (setq tags-menu-items
   '("/home/gkettler/TexturaWD/textura"
-    "/home/gkettler/checkouts/cpmcelery"
-    "/home/gkettler/checkouts/highnoon"
+    "/home/gkettler/checkouts/cpmcelery/cpm-6281/a"
+    "/home/gkettler/checkouts/highnoon/cpm-6281/a"
     "/home/gkettler/checkouts/feebill/trunk"
-    "~/checkouts/cpm-14429/b"
+    "/home/gkettler/checkouts/development/features2"
+    "~/checkouts/cpm-14429/c"
+    "~/checkouts/cpm-14338/b"
     "~/checkouts/cpm-6281/m"
     )
   )
 
 
-(global-set-key (kbd "C-x t") 'select-tags-table)
-(global-set-key (kbd "C-x C-t") 'select-tags-table)
+(global-set-key (kbd "C-x t") 'visit-tags-table)
+(global-set-key (kbd "C-x C-t") 'visit-tags-table)
 
 (defadvice visit-tags-table (around stfu compile activate)
   (flet ((y-or-no-p (&rest args) nil))
+    ad-do-it))
+
+(defadvice kill-matching-buffers (around stfu compile activate)
+  (flet ((y-or-no-p (&rest args) t))
     ad-do-it))
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -71,8 +77,13 @@
 (key-chord-define evil-replace-state-map ";;" 'evil-normal-state)
 (key-chord-define evil-normal-state-map "zx" 'execute-extended-command)
 (key-chord-define evil-normal-state-map "ko" 'kill-other-buffers)
+(key-chord-define evil-normal-state-map "kt" 'kill-tags-buffers)
+(key-chord-define evil-normal-state-map "kb" 'kill-matching-buffers)
 (key-chord-define evil-normal-state-map "z " 'select-current-line)
 
+(defun kill-tags-buffers ()
+  (interactive)
+  (kill-matching-buffers "TAGS"))
 
 (require 'package)
 (add-to-list 'package-archives 
@@ -91,9 +102,19 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
 
+(defun scroll-down-one-line ()
+  "I can't believe I'm writing this"
+  (interactive)
+  (scroll-down 2))
+
+(defun scroll-up-one-line ()
+  "I can't believe I'm writing this 2"
+  (interactive)
+  (scroll-up 2))
+
 (define-key evil-normal-state-map (kbd "q") nil)
-(define-key evil-normal-state-map (kbd "<up>") 'scroll-down)
-(define-key evil-normal-state-map (kbd "<down>") 'scroll-up)
+(define-key evil-normal-state-map (kbd "<up>") 'scroll-down-one-line)
+(define-key evil-normal-state-map (kbd "<down>") 'scroll-up-one-line)
 (define-key evil-normal-state-map (kbd "<left>") 'next-buffer)
 (define-key evil-normal-state-map (kbd "<right>") 'previous-buffer)
 (define-key evil-normal-state-map (kbd "zc") 'comment-region)
@@ -257,6 +278,7 @@
 (add-to-list 'load-path "/home/gkettler/.emacs.d/flycheck-pyflakes")
 (require 'flycheck-pyflakes)
 
+;;; .emacs ends here
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
@@ -268,5 +290,11 @@
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
+(setq icicle-kill-visited-buffers-flag t)
+
+
+;;; no wait, .emacs goes on a bit longer
+
 (provide '.emacs)
-;;; .emacs ends here
+
+;;; there we go
